@@ -1,0 +1,126 @@
+-gallery_images = ["mx.jpg","cook.jpg","sj.jpg"]
+!!!5
+%html{class:'no-js', lang:"es"}
+  %head
+    %meta{charset:'utf-8'}
+    %title La mejor comida en CafeMaid Facilito
+    %meta{name:"description", content:"Come rico en el mejor restaurant de la ciudad, servicio de primera."}
+    %link{href:"https://fonts.googleapis.com/css?family=Dancing+Script", rel:"stylesheet"}
+    %link{rel:"stylesheet", href:"css/normalize.css"}
+    %link{rel:"stylesheet", href:"css/bootstrap.css"}
+    %link{rel:"stylesheet", href:"https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css"}
+    %link{rel:"stylesheet", href:"css/style.css"}
+    %meta{name:"viewport", content:"width=device-width, initial-scale=1"}
+    %meta{:"data-name" => "image-counter", content:"#{gallery_images.size - 1}"}
+    %script{src:"js/vendor/modernizr-3.6.0.min.js"}
+
+  %body
+    ="<!--[if lt IE 9]"
+    %p{class:"browserupgrade"}
+      Estas usando un navegador
+      %strong desactualizado
+      Por favor
+      %a{href:"http://browsehappy.com/"}
+        actualiza tu navegador
+      para una mejor experiencia
+    ="<![endif]-->"
+    .video-container
+      %video{autoplay:true,loop:true,width:"1280",height:"720",poster:"./videos/snapshots/bbq.jpg"}
+        %source{src:"./videos/mp4/bbq.mp4",typ:"video/mp4"}
+        %source{src:"./videos/webm/bbq.webm",typ:"video/webm"}
+    .row.full-height.middle-xs.center-xs.relative.up#home
+      .col-xs-12
+        .box.white-text
+          %img{src:"./imgs/logo.png", width:200}
+          %h1.dancing-script.title.no-margin CafeMaid Facilito
+          %p#is-open
+            %i.glyphicon.glyphicon-time
+            %span.text Abierto ahora
+      %nav.fixed.top.right.navigation.white-text#navigation
+        -menu = [{title:"Home",link:"#home"}, {title:"Menu",link:"#menu"}, {title:"Galeria",link:"#gallery"}, {title:"Contacto",link:"#contact"}, {title:"Como llegar",link:"#location"}]
+        %ul.list-inline
+          -menu.each do |item|
+            %li
+              %a{href:item[:link]}= item[:title]
+      .absolute.black.large-padding.white-text.full-width#description
+        .row.middle-xs.center-xs
+          .col-xs-7.col-sm-6.white-text.medium
+            Atencion calida y comida preparada por artistas
+          .col-xs.hidden#sticky-navigation
+            .box
+              %nav.text-right.navigation#responsive-nav
+                %i.glyphicon.glyphicon-menu-hamburger.white-text.subtitle.glyphicon-remove#menu-opener
+                %ul.list-inline
+                  -menu.each do |item|
+                    %li
+                      %a.menu-link{href:item[:link]}= item[:title]
+
+    .text-center.relative#menu
+      .absolute.white#menu-title
+        %h2.dancing-script.title Menu
+        -menu_photos = [{name:"coffe",image:"cf",pricing:"10.00"},{name:"cakes",image:"ck",pricing:"20.00"},{name:"cookie",image:"cook",pricing:"30.00"},{name:"maid",image:"md",pricing:"14.00"},{name:"christmasCake",image:"mxx",pricing:"60.00"},{name:"postre",image:"sp",pricing:"40.00"},{name:"chocoCake",image:"sj",pricing:"155.00"},{name:"naranjas",image:"nj",pricing:"134.00"}]
+      
+
+      .row
+        -menu_photos.each do |photo|
+          .col-md-4.col-lg-3.col-sm-6.col-xs-12.food{style:"background-image:url(./imgs/food/#{photo[:image]}.jpg)"}
+            .screen
+              .row.middle-xs.full-height
+                .col-xs-12.white-text
+                  %h3.dancing-script.subtitle= photo[:name]
+                  %p.no-margin= photo[:pricing] + "USD"
+
+    #gallery
+      .inner
+        -gallery_images.each do |image|
+          .image{style:"background-image:url(./imgs/food/#{image});"}
+    .container
+      .card.white.black-text.text-center.relative
+        %h3.slim
+          Au
+          %strong.dancing-script.medium CafeMom je facilite
+          la cuisine n'est pas un métier, ce n'est pas une technique, 
+          %strong.dancing-script.medium c'est un art
+        %p.top-space
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. In mollitia culpa, esse iure qui, nemo molestiae nobis quibusdam neque ad laborum. Odio soluta vel magnam nam perspiciatis voluptatem sit distinctio!. Cumque, non adipisci laboriosam voluptate quibusdam recusandae ducimus, laudantium, magni rerum, fuga perferendis numquam repellendus perspiciatis. Eveniet ipsum quam dolorum at, rerum! -
+          %strong.dancing-script.medium Diego - Chef
+          .large-padding.medium.black.white-text.text-center
+            Tambien puedes acceder a este sitio sin internet
+
+    .black.white-text.full-height#contact
+      .row.middle-xs.full-height
+        .col-xs-12
+          .box
+            %p.text-center.medium#info-contacto Presiona enter para llenar el campo correspondiente y enviarnos un correo
+
+            %form{action:"https://formspree.io/Kiritsugufel@gmail.com",method:"POST",id:"contact-form",class:"step-form"}
+
+              .row.center-xs
+                .col-xs-12.col-sm-2.col-md-1.first-sm
+                  .box
+                    -3.times do |i|
+                      -if i == 0
+                        .path-step.active
+                      -else
+                        .path-step
+                .col-xs-12.col-sm-3.first-xs
+                  .box
+                    %fieldset.step.active
+                      %input{type:"email",name:"email",placeholder:"Correo electronico",class:"input",required:true}
+                    %fieldset.step
+                      %input{type:"text",name:"name",placeholder:"Nombre",class:"input",required:true}
+                    %fieldset.step
+                      %textarea{name:"body",placeholder:"Mensaje",class:"input",required:true}
+    #location
+      #map
+      #message.black.large-padding.white-text.text-center.medium
+        Prueba
+
+    %script{src:"https://code.jquery.com/jquery-3.3.1.min.js",integrity:"sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8:",crossorigin:"anonymous"}
+    %script
+      window.jQuery || document.write("<script src='./js/vendor/jquery-3.3.1.min.js'><\/script>")
+    %script{src:"https://maps.googleapis.com/maps/api/js?key=AIzaSyBA8gIU645oqJ3XVT9u4sr-C4GEFO-Pc8Q"}
+    %script{src:"https://unpkg.com/sweetalert/dist/sweetalert.min.js"}
+    %script{src:"/dist/app.js"}
+
+
