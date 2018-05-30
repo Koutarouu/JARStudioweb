@@ -33,7 +33,7 @@
     const marker = new google.maps.Marker({
       map: map,
       position: my_place,
-      title: "CafeMaid Facilite",
+      title: "JARStudio",
       visible: true
     })
 
@@ -53,7 +53,7 @@
         if(status === google.maps.DistanceMatrixStatus.OK){
           const duration_element = response.rows[0].elements[0]
           const duracion_viaje = duration_element.duration.text
-          document.querySelector("#message").innerHTML = `Estas a ${duracion_viaje} de una noche inolvidable en <span class="dancing-script medium">CafeMaid Facilito</span>`
+          document.querySelector("#message").innerHTML = `Estas a ${duracion_viaje} para encontrarte con las oficinas de <span class="dancing-script medium">JARStudio</span>`
         }
       })
 
